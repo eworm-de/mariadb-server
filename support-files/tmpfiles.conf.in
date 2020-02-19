@@ -9,3 +9,5 @@
 # It shouldn't be used for datadir which is why it
 # may be disabled.
 @DISABLE_TMP@d @MYSQL_UNIX_DIR@ 0755 @MYSQLD_USER@ @MYSQLD_USER@ -
+d @MYSQL_DATADIR@ 0700 @MYSQLD_USER@ @MYSQLD_USER@ -
+h @MYSQL_DATADIR@ - - - - +C
