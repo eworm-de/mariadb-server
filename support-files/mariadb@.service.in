@@ -243,7 +243,7 @@ UMask=007
 
 # If you don't use the /tmp directory for SELECT ... OUTFILE and
 # LOAD DATA INFILE you can enable PrivateTmp=true for a little more security.
-PrivateTmp=false
+PrivateTmp=true
 
 # Set an explicit Start and Stop timeout of 900 seconds (15 minutes!)
 # this is the same value as used in SysV init scripts in the past
