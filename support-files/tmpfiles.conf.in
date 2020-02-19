@@ -10,7 +10,11 @@
 # * innodb_temp_data_file_path
 # * rocksdb_tmpdir
 # etc.
-# It shouldn't be used for datadir which is why it
-# may be disabled.
 @DISABLE_RUNDATADIR@d @INSTALL_RUNDATADIR@ 0755 @MYSQLD_USER@ @MYSQLD_USER@ -
 @DISABLE_MYSQL_UNIX_ADDRDIR@d @MYSQL_UNIX_ADDRDIR@ 0755 @MYSQLD_USER@ root -
+
+# Create the data directory
+# Upstream thinks this is a bad idea, mainly because the mechanism has "tmp"
+# in its name. We do it anyway - no-op if exists, and works just fine. :)
+d @MYSQL_DATADIR@ 0700 @MYSQLD_USER@ @MYSQLD_USER@ -
+h @MYSQL_DATADIR@ - - - - +C
