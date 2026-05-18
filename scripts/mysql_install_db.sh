@@ -35,7 +35,7 @@ silent_startup="--silent-startup"
 log_error=""
 
 force=0
-in_rpm=0
+in_rpm=1
 ip_only=0
 cross_bootstrap=0
 do_resolve=0
