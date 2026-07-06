@@ -7381,7 +7381,6 @@ const Lex_ident_column Field_iterator_view::name()
   return ptr->name;
 }
 
-
 Item *Field_iterator_view::create_item(THD *thd)
 {
   return create_view_field(thd, view, &ptr->item, &ptr->name);

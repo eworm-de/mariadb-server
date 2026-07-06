@@ -6399,12 +6399,14 @@ find_field_in_view(THD *thd, TABLE_LIST *table_list,
           (*ref)->is_old_value_reference)
       {
         Item *real = item->real_item();
+        Item_old_field *old= nullptr;
+
         if (real->type() == Item::FIELD_ITEM)
-        {
-          Item_old_field *old =
-               new (thd->mem_root) Item_old_field(thd, (Item_field*) real);
-          item = old;
-        }
+          old= new (thd->mem_root) Item_old_field(thd, (Item_field*) real);
+        else
+          old= new (thd->mem_root) Item_old_field(thd, real);
+
+        item = old;
       }
 
       /*
@@ -6825,7 +6827,9 @@ find_field_in_table_ref(THD *thd, TABLE_LIST *table_list,
         {
           if (!ref)
             DBUG_RETURN(fld);
+
           Item *it= (*ref)->real_item();
+
           if (it->type() == Item::FIELD_ITEM)
             field_to_set= ((Item_field*)it)->field;
           else
