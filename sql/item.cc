@@ -555,6 +555,16 @@ void Item::print_value(String *str)
   {
     switch (cmp_type()) {
     case STRING_RESULT:
+      if (ptr->charset() == &my_charset_bin && ptr->length())
+      {
+        StringBuffer<64> escaped_val;
+        escaped_val.set_hex(ptr->ptr(), ptr->length());
+        str->append(STRING_WITH_LEN("0x"));
+        str->append(escaped_val);
+      }
+      else
+        append_unescaped(str, ptr->ptr(), ptr->length());
+      break;
     case TIME_RESULT:
       append_unescaped(str, ptr->ptr(), ptr->length());
       break;
